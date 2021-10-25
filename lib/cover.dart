@@ -58,11 +58,14 @@ class CoverPage extends StatelessWidget {
                         child: Text(
                           'Login',
                           style: TextStyle(
-                              letterSpacing: 4.0, fontWeight: FontWeight.w800),
+                            letterSpacing: 4.0,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.black,
-                          primary: Colors.white,
+                          onPrimary: Colors.white,
+                          primary: Colors.cyan.shade800,
                           onSurface: Colors.grey,
                           side: BorderSide(color: Colors.black12, width: 1),
                           elevation: 7,
@@ -83,10 +86,10 @@ class CoverPage extends StatelessWidget {
                               letterSpacing: 4.0, fontWeight: FontWeight.w800),
                         ),
                         style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.black,
-                          primary: Colors.white,
+                          onPrimary: Colors.white,
+                          primary: Colors.cyan.shade800,
                           onSurface: Colors.grey,
-                          side: BorderSide(color: Colors.black12, width: 1),
+                          // side: BorderSide(color: Colors.black12, width: 1),
                           elevation: 7,
                           minimumSize: Size(200, 50),
                           shadowColor: Colors.teal,

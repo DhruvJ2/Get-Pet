@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/body.dart';
 import 'package:pet_adopter/cover.dart';
+import 'package:pet_adopter/login.dart';
+import 'package:pet_adopter/signup.dart';
 // import 'package:pet_adopter/login.dart';
 
 void main() => runApp(PetAdopter());
@@ -13,7 +15,9 @@ class PetAdopter extends StatelessWidget {
     return MaterialApp(
       title: 'Pet Adopter',
       // home: HomePage(),
-      home: CoverPage(),
+      // home: CoverPage(),
+      // home: LoginPage(),
+      home: SignUpPage(),
     );
   }
 }
