@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/category.dart';
+import 'package:pet_adopter/Variables/listmodel.dart';
 
 class HomePageBody extends StatelessWidget {
-  const HomePageBody({Key? key}) : super(key: key);
-
+  HomePageBody({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var images = [
-      'assets/dog.jpg',
-      'assets/dog2.jpg',
-      'assets/Dog 1.jpg',
-      'assets/cat.jpg',
-      'assets/hamster1.jpg',
-      'assets/hamster2.jpg',
-      'assets/bird.jpg',
-    ];
+    PetListModel pet = new PetListModel();
+
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
@@ -108,7 +101,7 @@ class HomePageBody extends StatelessWidget {
                               width: 130.0,
                               height: 170.0,
                               child: Image.asset(
-                                '${images[index]}',
+                                pet.displaypet[index],
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -127,7 +120,7 @@ class HomePageBody extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'name',
+                                    'Name:',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   Text(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/body.dart';
-import 'package:pet_adopter/cover.dart';
-import 'package:pet_adopter/login.dart';
-import 'package:pet_adopter/signup.dart';
+import 'package:pet_adopter/addpet.dart';
+// import 'package:pet_adopter/cover.dart';
+// import 'package:pet_adopter/login.dart';
+// import 'package:pet_adopter/signup.dart';
 // import 'package:pet_adopter/login.dart';
 
 void main() => runApp(PetAdopter());
@@ -14,10 +15,10 @@ class PetAdopter extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pet Adopter',
-      // home: HomePage(),
+      home: HomePage(),
       // home: CoverPage(),
       // home: LoginPage(),
-      home: SignUpPage(),
+      // home: SignUpPage(),
     );
   }
 }
@@ -48,7 +49,10 @@ class HomePage extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => addPet()));
+              },
               icon: Icon(Icons.add),
               splashColor: Colors.cyan.shade700,
               iconSize: 20.0,
