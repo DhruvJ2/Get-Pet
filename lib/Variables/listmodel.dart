@@ -18,22 +18,46 @@ class PetListModel {
     'image': ['assets/hamster1.jpg', 'assets/hamster2.jpg'],
   };
 
-  var index = Random();
+  List<int> numberList = [];
+  var random = Random();
+  late int index;
   List<String> displaypet = [];
   PetListModel() {
-    //What if number repeats
-    displaypet = [for (int i = 0; i < 7; i++) randompet(i)];
+    for (int i = 0; i < 7; i++) {
+      if (i == 2 || i == 4) numberList.clear();
+      displaypet.add(randompet(i));
+    }
     displaypet.shuffle();
   }
 
   String randompet(int i) {
-    if (i < 3)
-      return dog['image']![index.nextInt(dog['image']!.length)];
-    else if (i >= 3 && i < 5)
-      return cat['image']![index.nextInt(cat['image']!.length)];
-    else if (i >= 5 && i < 7)
-      return hamster['image']![index.nextInt(hamster['image']!.length)];
-    else
-      return bird['image']![index.nextInt(bird['image']!.length)];
+    switch (i) {
+      case 0:
+      case 1:
+        index = random.nextInt(dog['image']!.length);
+        while (numberList.contains(index)) {
+          index = random.nextInt(dog['image']!.length);
+        }
+        numberList.add(index);
+        return dog['image']![index];
+      case 2:
+      case 3:
+        index = random.nextInt(cat['image']!.length);
+        while (numberList.contains(index)) {
+          index = random.nextInt(cat['image']!.length);
+        }
+        numberList.add(index);
+        return cat['image']![index];
+      case 4:
+      case 5:
+        index = random.nextInt(hamster['image']!.length);
+        while (numberList.contains(index)) {
+          index = random.nextInt(hamster['image']!.length);
+        }
+        numberList.add(index);
+        return hamster['image']![index];
+      default:
+        return bird['image']![random.nextInt(bird['image']!.length)];
+    }
   }
 }

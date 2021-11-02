@@ -14,7 +14,7 @@ class PetAdopter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pet Adopter',
+      title: 'Get Pet',
       home: HomePage(),
       // home: CoverPage(),
       // home: LoginPage(),

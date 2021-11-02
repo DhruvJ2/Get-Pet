@@ -22,16 +22,6 @@ class PetPage extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-                    top: 20.0,
-                    left: 100.0,
-                    right: 100.0,
-                    bottom: 20.0,
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: AssetImage('assets/dog.jpg'),
-                    ),
-                  ),
-                  Positioned(
                     top: 5.0,
                     left: 5.0,
                     child: IconButton(
@@ -49,6 +39,16 @@ class PetPage extends StatelessWidget {
                       color: Colors.white,
                       onPressed: () {},
                       icon: favorite_icon,
+                    ),
+                  ),
+                  Positioned(
+                    top: 20.0,
+                    left: 100.0,
+                    right: 100.0,
+                    bottom: 20.0,
+                    child: CircleAvatar(
+                      radius: 70.0,
+                      backgroundImage: AssetImage('assets/dog.jpg'),
                     ),
                   ),
                 ],

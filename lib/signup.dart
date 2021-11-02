@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pet_adopter/UI/TextFieldDesign.dart';
 import 'package:pet_adopter/login.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -42,150 +43,19 @@ class SignUpPage extends StatelessWidget {
                   SizedBox(
                     height: 40.0,
                   ),
-                  Container(
-                    width: _size.width - 150,
-                    child: TextFormField(
-                      cursorWidth: 2.0,
-                      cursorColor: Colors.cyan.shade800,
-                      maxLength: 20,
-                      style: TextStyle(
-                        letterSpacing: 2.0,
-                        color: Colors.cyan.shade800,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                          color: Colors.cyan.shade800,
-                          letterSpacing: 3.0,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan.shade800,
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                            color: Colors.cyan.shade800,
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldDesign(name: 'Username'),
                   SizedBox(
                     height: 30.0,
                   ),
-                  Container(
-                    width: _size.width - 150,
-                    child: TextFormField(
-                      cursorWidth: 2.0,
-                      cursorColor: Colors.cyan.shade800,
-                      style: TextStyle(
-                        letterSpacing: 2.0,
-                        color: Colors.cyan.shade800,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Colors.cyan.shade800,
-                          letterSpacing: 3.0,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan.shade800,
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                            color: Colors.cyan.shade800,
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldDesign(name: 'Email'),
                   SizedBox(
                     height: 40.0,
                   ),
-                  Container(
-                    width: _size.width - 150,
-                    child: TextFormField(
-                      cursorWidth: 2.0,
-                      cursorColor: Colors.cyan.shade800,
-                      obscureText: true,
-                      style: TextStyle(
-                        letterSpacing: 2.0,
-                        color: Colors.cyan.shade800,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: Colors.cyan.shade800,
-                          letterSpacing: 3.0,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan.shade800,
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                            color: Colors.cyan.shade800,
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldDesign(name: 'Password'),
                   SizedBox(
                     height: 40.0,
                   ),
-                  Container(
-                    width: _size.width - 150,
-                    child: TextFormField(
-                      cursorWidth: 2.0,
-                      cursorColor: Colors.cyan.shade800,
-                      obscureText: true,
-                      style: TextStyle(
-                        letterSpacing: 2.0,
-                        color: Colors.cyan.shade800,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                        labelStyle: TextStyle(
-                          color: Colors.cyan.shade800,
-                          letterSpacing: 3.0,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan.shade800,
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            )),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                            color: Colors.cyan.shade800,
-                            width: 1.0,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldDesign(name: 'Confirm Password'),
                   SizedBox(
                     height: 50.0,
                   ),
