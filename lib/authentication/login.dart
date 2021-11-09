@@ -39,6 +39,7 @@ class LoginPage extends StatelessWidget {
                   height: 40.0,
                 ),
                 TextFormField(
+                  controller: _username,
                   cursorWidth: 2.0,
                   cursorColor: Colors.cyan.shade800,
                   maxLength: 20,
@@ -73,6 +74,7 @@ class LoginPage extends StatelessWidget {
                   height: 30.0,
                 ),
                 TextFormField(
+                  controller: _password,
                   cursorWidth: 2.0,
                   cursorColor: Colors.cyan.shade800,
                   obscureText: true,
@@ -115,7 +117,7 @@ class LoginPage extends StatelessWidget {
                           vertical: 15.0, horizontal: 40.0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0))),
-                  onPressed: () {},
+                  onPressed: () async {},
                   child: Text(
                     'Login',
                     style: TextStyle(

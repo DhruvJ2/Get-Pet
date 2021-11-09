@@ -1,9 +1,27 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/TextFieldDesign.dart';
-import 'package:pet_adopter/login.dart';
+import 'package:pet_adopter/authentication/login.dart';
+import 'package:pet_adopter/services/auth.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  AuthServices _auth = AuthServices();
+
+  final _formKey = GlobalKey<FormState>();
+
+  String email = TextFieldDesign(
+    name: 'Email',
+  ).textvalue;
+  String password = TextFieldDesign(
+    name: 'Password',
+  ).textvalue;
+  String confirmpassword = TextFieldDesign(
+    name: 'ConfirmPassword',
+  ).textvalue;
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +86,16 @@ class SignUpPage extends StatelessWidget {
                             vertical: 15.0, horizontal: 40.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0))),
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate() &&
+                          password == confirmpassword) {
+                        dynamic result = await _auth
+                            .registerWithEmailAndPassword(email, password);
+                        if (result == null) {
+                          error = 'Enter valid Email';
+                        }
+                      }
+                    },
                     child: Text(
                       'Register',
                       style: TextStyle(

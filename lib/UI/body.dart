@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/category.dart';
-import 'package:pet_adopter/Variables/listmodel.dart';
+import 'package:pet_adopter/models/listmodel.dart';
 
 class HomePageBody extends StatelessWidget {
   HomePageBody({Key? key}) : super(key: key);

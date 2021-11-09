@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pet_adopter/login.dart';
-import 'package:pet_adopter/signup.dart';
+import 'package:pet_adopter/authentication/login.dart';
+import 'package:pet_adopter/authentication/signup.dart';
 
 class CoverPage extends StatelessWidget {
   CoverPage({Key? key}) : super(key: key);

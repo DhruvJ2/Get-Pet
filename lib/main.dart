@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/body.dart';
 import 'package:pet_adopter/addpet.dart';
-// import 'package:pet_adopter/cover.dart';
-// import 'package:pet_adopter/login.dart';
-// import 'package:pet_adopter/signup.dart';
-// import 'package:pet_adopter/login.dart';
+import 'package:pet_adopter/services/auth.dart';
+import 'package:pet_adopter/wrapper.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(PetAdopter());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(PetAdopter());
+}
 
 class PetAdopter extends StatelessWidget {
   const PetAdopter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Get Pet',
-      home: HomePage(),
-      // home: CoverPage(),
-      // home: LoginPage(),
-      // home: SignUpPage(),
+    return StreamProvider.value(
+      value: AuthServices().user,
+      initialData: null,
+      child: MaterialApp(
+        title: 'Get Pet',
+        home: Wrapper(),
+        // home: CoverPage(),
+        // home: LoginPage(),
+        // home: SignUpPage(),
+      ),
     );
   }
 }
