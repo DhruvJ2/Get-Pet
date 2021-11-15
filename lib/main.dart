@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/body.dart';
+import 'package:pet_adopter/UI/category.dart';
 import 'package:pet_adopter/addpet.dart';
 import 'package:pet_adopter/services/auth.dart';
 import 'package:pet_adopter/wrapper.dart';
@@ -37,6 +38,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        drawer: CustomDrawer(),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.cyan.shade900,
@@ -48,13 +50,15 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.w100),
           ),
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.menu_rounded),
-            splashColor: Colors.cyan.shade700,
-            iconSize: 20.0,
-            color: Colors.white,
-          ),
+          // leading: IconButton(
+          //   onPressed: () {
+          //     CustomDrawer();
+          //   },
+          //   icon: Icon(Icons.menu_rounded),
+          //   splashColor: Colors.cyan.shade700,
+          //   iconSize: 20.0,
+          //   color: Colors.white,
+          // ),
           actions: [
             IconButton(
               onPressed: () {

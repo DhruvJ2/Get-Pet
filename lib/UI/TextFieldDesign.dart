@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TextFieldDesign extends StatelessWidget {
-  TextFieldDesign({Key? key, required String this.name}) : super(key: key);
+  //Duplicate keys found
+  String? name;
+  TextFieldDesign({
+    String? this.name,
+  });
 
-  String name;
-  late String value;
-
+  TextEditingController _controller = TextEditingController();
   String get textvalue {
-    return value;
+    return _controller.text;
   }
 
   @override
@@ -17,10 +19,8 @@ class TextFieldDesign extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       width: _size.width - 150,
       child: TextFormField(
+        controller: _controller,
         validator: (value) => value!.isEmpty ? 'Enter valid Input' : null,
-        onChanged: (value) {
-          this.value = value;
-        },
         cursorWidth: 2.0,
         cursorColor: Colors.cyan.shade800,
         obscureText: true,

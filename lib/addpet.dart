@@ -76,6 +76,8 @@ class addPet extends StatelessWidget {
                               iconSize: 22.0,
                               onPressed: () {
                                 //file handling
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => AddPicture()));
                               },
                               color: Colors.black,
                               icon: Icon(Icons.add),
@@ -126,6 +128,18 @@ class addPet extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+///INCOMPLETE
+class AddPicture extends StatelessWidget {
+  const AddPicture({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.cyan.shade800,
     );
   }
 }

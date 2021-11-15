@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pet_adopter/main.dart';
 import 'package:pet_adopter/pet.dart';
+import 'package:pet_adopter/services/auth.dart';
 
 class Category extends StatelessWidget {
   Color _color;
@@ -66,6 +68,62 @@ class Category extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+///INCOMPLETE
+class CustomDrawer extends StatelessWidget {
+  CustomDrawer({Key? key}) : super(key: key);
+  AuthServices _auth = AuthServices();
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://images.unsplash.com/photo-1485290334039-a3c69043e517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyOTU3NDE0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'),
+            ),
+            accountEmail: Text('jane.doe@example.com'),
+            accountName: Text(
+              'Jane Doe',
+              style: TextStyle(fontSize: 24.0),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.cyan.shade800,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: Text(
+              'SignOut',
+              style: TextStyle(fontSize: 24.0),
+            ),
+            onTap: () async {
+              await _auth.signOut();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'Home',
+              style: TextStyle(fontSize: 24.0),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => HomePage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
