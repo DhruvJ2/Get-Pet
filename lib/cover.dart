@@ -52,8 +52,9 @@ class CoverPage extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginPage()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
                         },
                         child: Text(
                           'Login',
@@ -77,8 +78,9 @@ class CoverPage extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SignUpPage()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpPage()));
                         },
                         child: Text(
                           'Sign Up',

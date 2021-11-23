@@ -1,26 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:pet_adopter/cover.dart';
 import 'package:pet_adopter/main.dart';
 import 'package:pet_adopter/services/auth.dart';
+
+///INACTIVE INPUT CONNECTION
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
   AuthServices _auth = AuthServices();
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     String error = '';
-    TextEditingController _email = TextEditingController();
-    TextEditingController _password = TextEditingController();
+    final _email = TextEditingController();
+    final _password = TextEditingController();
 
     var _size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.cyan.shade800,
-      body: Center(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.cyan.shade800,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.cyan.shade800,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => CoverPage()));
+            },
+          ),
+        ),
+        body: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.only(left: 50.0, right: 50.0),
             padding: EdgeInsets.all(45.0),
-            height: _size.height * 0.85,
+            height: _size.height * 0.80,
             width: _size.width * 0.80,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -134,9 +151,12 @@ class LoginPage extends StatelessWidget {
                           _email.text,
                           _password.text,
                         );
-                        if (result == null) error = 'Invalid Credentials';
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePage()));
+                        if (result == null)
+                          error = 'Invalid Credentials';
+                        else
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
                       }
                     },
                     child: Text(

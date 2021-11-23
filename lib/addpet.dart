@@ -29,98 +29,118 @@ class addPet extends StatelessWidget {
                 borderRadius:
                     BorderRadius.only(topRight: Radius.circular(20.0)),
                 color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white,
-                    offset: const Offset(-2, -2),
-                    blurRadius: 12.0,
-                    spreadRadius: 0.0,
-                  ),
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.white,
+                //     offset: const Offset(-2, -2),
+                //     blurRadius: 12.0,
+                //     spreadRadius: 0.0,
+                //   ),
+                // ],
               ),
               height: _size.height - 200,
               width: _size.width - 100,
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(20.0),
-                    height: 110.0,
-                    width: 110.0,
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundColor: Colors.black26,
-                          child: Text(
-                            'Add photo',
-                            style: TextStyle(color: Colors.black45),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 5.0,
-                          right: 5.0,
-                          child: Container(
-                            height: 40.0,
-                            width: 40.0,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black,
-                                ),
-                              ],
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child: IconButton(
-                              iconSize: 22.0,
-                              onPressed: () {
-                                //file handling
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AddPicture()));
-                              },
-                              color: Colors.black,
-                              icon: Icon(Icons.add),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  TextFieldDesign(name: 'Name'),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFieldDesign(name: 'Breed'),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFieldDesign(name: 'Category'),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFieldDesign(name: 'Favourite Food'),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.cyan.shade800,
-                        shadowColor: Colors.white,
-                        elevation: 0.0,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 15.0, horizontal: 40.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0))),
-                    onPressed: () {},
-                    child: Text(
-                      'ADD',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 3.0,
+                  Positioned(
+                    top: 5.0,
+                    left: 5.0,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.cyan.shade900,
                       ),
                     ),
+                  ),
+                  Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(20.0),
+                        height: 110.0,
+                        width: 110.0,
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 50.0,
+                              backgroundColor: Colors.black26,
+                              child: Text(
+                                'Add photo',
+                                style: TextStyle(color: Colors.black45),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 5.0,
+                              right: 5.0,
+                              child: Container(
+                                height: 40.0,
+                                width: 40.0,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                child: IconButton(
+                                  iconSize: 22.0,
+                                  onPressed: () {
+                                    //file handling
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddPicture()));
+                                  },
+                                  color: Colors.black,
+                                  icon: Icon(Icons.add),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      TextFieldDesign(name: 'Name'),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFieldDesign(name: 'Breed'),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFieldDesign(name: 'Category'),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextFieldDesign(name: 'Favourite Food'),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.cyan.shade800,
+                            shadowColor: Colors.white,
+                            elevation: 0.0,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15.0, horizontal: 40.0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0))),
+                        onPressed: () {},
+                        child: Text(
+                          'ADD',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 3.0,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

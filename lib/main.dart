@@ -50,15 +50,6 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.w100),
           ),
           centerTitle: true,
-          // leading: IconButton(
-          //   onPressed: () {
-          //     CustomDrawer();
-          //   },
-          //   icon: Icon(Icons.menu_rounded),
-          //   splashColor: Colors.cyan.shade700,
-          //   iconSize: 20.0,
-          //   color: Colors.white,
-          // ),
           actions: [
             IconButton(
               onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/UI/category.dart';
 import 'package:pet_adopter/models/listmodel.dart';
+import 'package:pet_adopter/pet.dart';
 
 class HomePageBody extends StatelessWidget {
   HomePageBody({Key? key}) : super(key: key);
@@ -67,14 +68,16 @@ class HomePageBody extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Category('Dogs', Colors.brown.shade200),
-                  Category('Cats', Colors.grey.shade200),
+                  Category('Dogs', Colors.brown.shade200, 'assets/dogicon.png'),
+                  Category('Cats', Colors.grey.shade200, 'assets/caticon.png'),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  Category('Birds', Colors.yellow.shade200),
-                  Category('Hamsters', Colors.pink.shade200),
+                  Category(
+                      'Birds', Colors.pink.shade200, 'assets/birdicon.png'),
+                  Category('Hamsters', Colors.orange.shade800,
+                      'assets/hamstericon.png'),
                 ],
               ),
             ],
@@ -88,6 +91,10 @@ class HomePageBody extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                     child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => PetPage()));
+                      },
                       child: Card(
                         margin: EdgeInsets.all(10.0),
                         elevation: 5.0,
@@ -151,7 +158,7 @@ class HomePageBody extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.cyan.shade900,
-                  width: 3.0,
+                  width: 1.0,
                 ),
                 borderRadius: BorderRadius.circular(10.0)),
             width: size.width,
@@ -167,7 +174,6 @@ class HomePageBody extends StatelessWidget {
                     Text('Contact'),
                   ],
                 ),
-                // Image(image: ''),
               ],
             ),
           ),

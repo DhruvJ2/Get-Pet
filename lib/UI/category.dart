@@ -1,4 +1,9 @@
+import 'dart:ffi';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:pet_adopter/addpet.dart';
+import 'package:pet_adopter/cover.dart';
 import 'package:pet_adopter/main.dart';
 import 'package:pet_adopter/pet.dart';
 import 'package:pet_adopter/services/auth.dart';
@@ -6,8 +11,9 @@ import 'package:pet_adopter/services/auth.dart';
 class Category extends StatelessWidget {
   Color _color;
   String category_name;
+  String image;
 
-  Category(this.category_name, this._color) {}
+  Category(this.category_name, this._color, this.image) {}
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +53,10 @@ class Category extends StatelessWidget {
                   child: SizedBox(
                     height: 30,
                     width: 30,
-                    // child: Image.asset(
-
-                    //   fit: BoxFit.fitHeight,
-                    // ),
+                    child: Image.asset(
+                      image,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               ),
@@ -99,29 +105,123 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
+            leading: const Icon(
+              Icons.home,
+              color: Colors.black87,
+            ),
+            title: const Text(
+              'Home',
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HomePage()));
+            },
+          ),
+          SizedBox(
+            height: 10.0,
+            child: Divider(
+              thickness: 1.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.black38,
+            ),
+          ),
+          ListTile(
+            leading: Image.asset(
+              'assets/dog-64x64-1131172.png',
+              height: 40.0,
+              width: 35.0,
+              alignment: Alignment.topLeft,
+            ),
+            title: const Text(
+              'Adopted pet',
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => addPet()));
+            },
+          ),
+          SizedBox(
+            height: 10.0,
+            child: Divider(
+              thickness: 1.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.black38,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.add,
+              color: Colors.black87,
+            ),
+            title: const Text(
+              'Add Pet',
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => addPet()));
+            },
+          ),
+          SizedBox(
+            height: 10.0,
+            child: Divider(
+              thickness: 1.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.black38,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.settings,
+              color: Colors.black87,
+            ),
+            title: const Text(
+              'Settings',
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => addPet()));
+            },
+          ),
+          SizedBox(
+            height: 10.0,
+            child: Divider(
+              thickness: 1.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.black38,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.logout,
+              color: Colors.black87,
+            ),
             title: Text(
               'SignOut',
-              style: TextStyle(fontSize: 24.0),
+              style: TextStyle(fontSize: 22.0),
             ),
             onTap: () async {
               await _auth.signOut();
+              sleep(Duration(milliseconds: 1000));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => CoverPage()));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text(
-              'Home',
-              style: TextStyle(fontSize: 24.0),
+          SizedBox(
+            height: 10.0,
+            child: Divider(
+              thickness: 1.0,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: Colors.black38,
             ),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => HomePage(),
-                ),
-              );
-            },
           ),
         ],
       ),
