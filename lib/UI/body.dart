@@ -92,8 +92,12 @@ class HomePageBody extends StatelessWidget {
                   return Container(
                     child: InkWell(
                       onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => PetPage()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PetPage(
+                                  image: pet.displaypet['image']![index],
+                                  name: pet.displaypet['name']![index],
+                                  breed: pet.displaypet['breed']![index],
+                                )));
                       },
                       child: Card(
                         margin: EdgeInsets.all(10.0),
@@ -108,7 +112,7 @@ class HomePageBody extends StatelessWidget {
                               width: 130.0,
                               height: 170.0,
                               child: Image.asset(
-                                pet.displaypet[index],
+                                pet.displaypet['image']![index],
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -116,6 +120,7 @@ class HomePageBody extends StatelessWidget {
                               height: 14.0,
                             ),
                             Container(
+                              padding: EdgeInsets.all(10.0),
                               decoration: BoxDecoration(
                                   color: Colors.cyan.shade900,
                                   borderRadius: BorderRadius.only(
@@ -125,23 +130,39 @@ class HomePageBody extends StatelessWidget {
                               height: 96.0,
                               width: 190.0,
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Name:',
-                                    style: TextStyle(color: Colors.white),
+                                    pet.displaypet['name']![index],
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 26.0,
+                                      fontWeight: FontWeight.w300,
+                                      letterSpacing: 3.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 3.0,
                                   ),
                                   Text(
-                                    'breed',
-                                    style: TextStyle(color: Colors.white),
+                                    pet.displaypet['breed']![index],
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
-                                  Text(
-                                    'Category',
-                                    style: TextStyle(color: Colors.white),
+                                  SizedBox(
+                                    height: 5.0,
                                   ),
-                                  Text(
-                                    'Favourite',
-                                    style: TextStyle(color: Colors.white),
-                                  )
+                                  // Text(
+                                  //   'Category',
+                                  //   style: TextStyle(
+                                  //     color: Colors.white,
+                                  //     fontSize: 14.0,
+                                  //     fontWeight: FontWeight.w300,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

@@ -3,11 +3,19 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class PetPage extends StatefulWidget {
-  String? category;
+  late String image;
+  late String name;
+  late String breed;
   PetPage({
     Key? key,
-    this.category,
-  }) : super(key: key);
+    required String image,
+    required String name,
+    required String breed,
+  }) : super(key: key) {
+    this.image = image;
+    this.name = name;
+    this.breed = breed;
+  }
 
   @override
   State<PetPage> createState() => _PetPageState();
@@ -15,10 +23,12 @@ class PetPage extends StatefulWidget {
 
 class _PetPageState extends State<PetPage> {
   String _text = '';
+  bool pressed = true;
 
   void initState() {
     super.initState();
     _text = 'Adopt';
+    pressed = true;
   }
 
   @override
@@ -57,12 +67,21 @@ class _PetPageState extends State<PetPage> {
                     ),
                   ),
                   Positioned(
-                    top: 20.0,
+                    top: 30.0,
                     left: 120.0,
                     right: 120.0,
                     bottom: 20.0,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/dog.jpg'),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100.0),
+                        child: Image.asset(
+                          widget.image,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -104,7 +123,7 @@ class _PetPageState extends State<PetPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Name',
+                                  widget.name,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 26,
@@ -119,13 +138,16 @@ class _PetPageState extends State<PetPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text(
-                                      'Breed ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        letterSpacing: 2.0,
-                                        fontWeight: FontWeight.w300,
+                                    SizedBox(
+                                      width: 200.0,
+                                      child: Text(
+                                        widget.breed,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          letterSpacing: 2.0,
+                                          fontWeight: FontWeight.w300,
+                                        ),
                                       ),
                                     ),
                                     Text(
@@ -143,6 +165,7 @@ class _PetPageState extends State<PetPage> {
                                   height: 7.0,
                                 ),
                                 Text(
+                                  //how??????
                                   'Category : Dog',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -245,7 +268,13 @@ class _PetPageState extends State<PetPage> {
                             ),
                             onPressed: () {
                               setState(() {
-                                _text = 'Adopted';
+                                if (pressed) {
+                                  _text = 'Adopted';
+                                  pressed = !pressed;
+                                } else {
+                                  pressed = !pressed;
+                                  _text = 'Adopt';
+                                }
                               });
                             },
                             padding: EdgeInsets.all(10.0),

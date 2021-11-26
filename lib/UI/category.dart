@@ -1,11 +1,10 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:pet_adopter/PetList.dart';
 import 'package:pet_adopter/addpet.dart';
 import 'package:pet_adopter/cover.dart';
 import 'package:pet_adopter/main.dart';
-import 'package:pet_adopter/pet.dart';
 import 'package:pet_adopter/services/auth.dart';
 
 class Category extends StatelessWidget {
@@ -21,7 +20,7 @@ class Category extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => PetPage(
+              builder: (context) => PetList(
                     category: category_name,
                   )));
         },
