@@ -7,7 +7,7 @@ It mainly focused on implementing Firebase Authentication and a bit of UI.
 
 ## Screenshot
 
-<img src="https://user-images.githubusercontent.com/79400453/144841499-42749932-e3b2-41ae-a7e0-780b62913490.png" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/79400453/144842474-b780d498-ec18-48fd-8b68-c0f114b609d1.png" width=50% height=50%>
 
 ## Installation
 ```shell
