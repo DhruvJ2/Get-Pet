@@ -6,7 +6,8 @@ This app lets you add pets , adopt pets , and browse different kinds of pets and
 It mainly focused on implementing Firebase Authentication and a bit of UI.
 
 ## Screenshot
-![Screenshot_1638791245](https://user-images.githubusercontent.com/79400453/144841499-42749932-e3b2-41ae-a7e0-780b62913490.png)
+
+<img src="https://user-images.githubusercontent.com/79400453/144841499-42749932-e3b2-41ae-a7e0-780b62913490.png" width=50% height=50%>
 
 ## Installation
 ```shell
