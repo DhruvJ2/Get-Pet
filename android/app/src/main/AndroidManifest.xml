@@ -3,6 +3,10 @@
    <application
         android:label="pet_adopter"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD7bwuSTz-DxMnBCrhwFmVvxu3oCB4C7kY"/>
+            
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

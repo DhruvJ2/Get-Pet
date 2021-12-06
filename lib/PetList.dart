@@ -19,22 +19,22 @@ class PetList extends StatelessWidget {
     var _size = MediaQuery.of(context).size;
 
     switch (category) {
-      case 'Dogs':
+      case 'Dog':
         imageList = pets.dog['image'];
         nameList = pets.dog['name'];
         breedList = pets.dog['breed'];
         break;
-      case 'Cats':
+      case 'Cat':
         imageList = pets.cat['image'];
         nameList = pets.cat['name'];
         breedList = pets.cat['breed'];
         break;
-      case 'Birds':
+      case 'Bird':
         imageList = pets.bird['image'];
         nameList = pets.bird['name'];
         breedList = pets.bird['breed'];
         break;
-      case 'Hamsters':
+      case 'Hamster':
         imageList = pets.hamster['image'];
         nameList = pets.hamster['name'];
         breedList = pets.hamster['breed'];
@@ -69,7 +69,7 @@ class PetList extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 35.0,
+            height: 40.0,
             width: _size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,20 +107,21 @@ class PetList extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.all(10.0),
-            height: _size.height - 140,
+            height: _size.height * 0.80,
             width: _size.width - 20,
             child: ListView.builder(
               itemCount: imageList!.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return InkWell(
+                return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => PetPage(
                               breed: breedList![index],
                               image: imageList![index],
                               name: nameList![index],
+                              category: category,
                             )));
                   },
                   child: Card(
@@ -160,13 +161,16 @@ class PetList extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          nameList![index],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 26,
-                                            fontWeight: FontWeight.w300,
-                                            letterSpacing: 3.0,
+                                        SizedBox(
+                                          width: _size.width * 0.35,
+                                          child: Text(
+                                            nameList![index],
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.w300,
+                                              letterSpacing: 3.0,
+                                            ),
                                           ),
                                         ),
                                         IconButton(

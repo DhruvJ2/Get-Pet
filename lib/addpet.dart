@@ -1,10 +1,88 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:pet_adopter/UI/TextFieldDesign.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:pet_adopter/models/listmodel.dart';
 
-class addPet extends StatelessWidget {
-  const addPet({Key? key}) : super(key: key);
+class addPet extends StatefulWidget {
+  addPet({Key? key}) : super(key: key);
 
+  @override
+  State<addPet> createState() => _addPetState();
+}
+
+class _addPetState extends State<addPet> {
+  TextFieldDesign textfld = TextFieldDesign();
+  XFile? imageFile;
+
+  _openGallery(BuildContext context) async {
+    var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
+    this.setState(() {
+      imageFile = picture;
+    });
+    Navigator.of(context).pop();
+  }
+
+  _openCamera(BuildContext context) async {
+    var picture = await ImagePicker().pickImage(source: ImageSource.camera);
+    this.setState(() {
+      imageFile = picture;
+    });
+    Navigator.of(context).pop();
+  }
+
+  Future<void> _showDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Make a Choice'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  GestureDetector(
+                    child: Text('Gallery'),
+                    onTap: () {
+                      _openGallery(context);
+                    },
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  GestureDetector(
+                    child: Text('Camera'),
+                    onTap: () {
+                      _openCamera(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  var petImage;
+
+  ImageProvider _decideImageView() {
+    if (imageFile == null) {
+      return Image.asset(
+        'assets/d3.png',
+        fit: BoxFit.fill,
+      ).image;
+    } else {
+      petImage = Image.file(
+        File(imageFile!.path),
+        fit: BoxFit.fill,
+      );
+      return Image.file(
+        File(imageFile!.path),
+        fit: BoxFit.fill,
+      ).image;
+    }
+  }
+
+  // final _name = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var _size = MediaQuery.of(context).size;
@@ -23,20 +101,11 @@ class addPet extends StatelessWidget {
               ),
             ),
             child: Container(
-              // margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 50.0),
               margin: EdgeInsets.only(top: 50.0, right: 50.0),
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.only(topRight: Radius.circular(20.0)),
                 color: Colors.white,
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.white,
-                //     offset: const Offset(-2, -2),
-                //     blurRadius: 12.0,
-                //     spreadRadius: 0.0,
-                //   ),
-                // ],
               ),
               height: _size.height - 200,
               width: _size.width - 100,
@@ -67,11 +136,8 @@ class addPet extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 50.0,
-                              backgroundColor: Colors.black26,
-                              child: Text(
-                                'Add photo',
-                                style: TextStyle(color: Colors.black45),
-                              ),
+                              backgroundColor: Colors.grey[350],
+                              backgroundImage: _decideImageView(),
                             ),
                             Positioned(
                               bottom: 5.0,
@@ -92,10 +158,7 @@ class addPet extends StatelessWidget {
                                   iconSize: 22.0,
                                   onPressed: () {
                                     //file handling
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                AddPicture()));
+                                    _showDialog(context);
                                   },
                                   color: Colors.black,
                                   icon: Icon(Icons.add),
@@ -130,7 +193,11 @@ class addPet extends StatelessWidget {
                                 vertical: 15.0, horizontal: 40.0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0))),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            textfld.addNewPet(petImage);
+                          });
+                        },
                         child: Text(
                           'ADD',
                           style: TextStyle(
@@ -152,14 +219,108 @@ class addPet extends StatelessWidget {
   }
 }
 
-///INCOMPLETE
-class AddPicture extends StatelessWidget {
-  const AddPicture({Key? key}) : super(key: key);
+class TextFieldDesign extends StatelessWidget {
+  String? name;
+  TextFieldDesign({
+    String? this.name,
+  });
+
+  TextEditingController _controller = TextEditingController();
+  PetListModel pet = PetListModel();
+  List temp = [];
+
+  addNewPet(var image) {
+    int count = 0;
+    switch (name) {
+      case 'Name':
+        temp.add(_controller.text);
+        count++;
+        break;
+      case 'Breed':
+        temp.add(_controller.text);
+        count++;
+        break;
+      case 'Category':
+        temp.add(_controller.text.toLowerCase());
+        count++;
+        break;
+      case 'Favourite Food':
+        temp.add(_controller.text);
+        count++;
+        break;
+    }
+    if (count == 4) assignValue(image);
+  }
+
+  assignValue(var image) {
+    switch (temp[2]) {
+      case 'dog':
+        pet.dog['name']!.add(temp[0]);
+        pet.dog['breed']!.add(temp[1]);
+        pet.dog['Category']!.add(temp[2]);
+        pet.dog['image']!.add(image);
+        break;
+      case 'cat':
+        pet.cat['name']!.add(temp[0]);
+        pet.cat['breed']!.add(temp[1]);
+        pet.cat['Category']!.add(temp[2]);
+        pet.cat['image']!.add(image);
+        break;
+      case 'bird':
+        pet.bird['name']!.add(temp[0]);
+        pet.bird['breed']!.add(temp[1]);
+        pet.bird['Category']!.add(temp[2]);
+        pet.bird['image']!.add(image);
+        break;
+      case 'hamster':
+        pet.hamster['name']!.add(temp[0]);
+        pet.hamster['breed']!.add(temp[1]);
+        pet.hamster['Category']!.add(temp[2]);
+        pet.hamster['image']!.add(image);
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.cyan.shade800,
+    var _size = MediaQuery.of(context).size;
+    return Container(
+      margin: EdgeInsets.all(10.0),
+      width: _size.width - 150,
+      child: TextFormField(
+        controller: _controller,
+        validator: (value) => value!.isEmpty ? 'Enter valid Input' : null,
+        cursorWidth: 2.0,
+        cursorColor: Colors.cyan.shade800,
+        style: TextStyle(
+          letterSpacing: 2.0,
+          color: Colors.cyan.shade800,
+        ),
+        decoration: InputDecoration(
+          labelText: name,
+          labelStyle: TextStyle(
+            color: Colors.cyan.shade800,
+            letterSpacing: 3.0,
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: Colors.cyan.shade800,
+                width: 1.0,
+                style: BorderStyle.solid,
+              )),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: Colors.cyan.shade800,
+              width: 1.0,
+              style: BorderStyle.solid,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

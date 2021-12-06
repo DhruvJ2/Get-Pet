@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_adopter/PetList.dart';
 import 'package:pet_adopter/addpet.dart';
 import 'package:pet_adopter/cover.dart';
 import 'package:pet_adopter/main.dart';
+import 'package:pet_adopter/pet.dart';
 import 'package:pet_adopter/services/auth.dart';
 
 class Category extends StatelessWidget {
@@ -78,10 +80,12 @@ class Category extends StatelessWidget {
   }
 }
 
-///INCOMPLETE
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
   AuthServices _auth = AuthServices();
+  User? user = FirebaseAuth.instance.currentUser;
+  get username => user!.displayName;
+  get email => user!.email;
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +98,9 @@ class CustomDrawer extends StatelessWidget {
               backgroundImage: NetworkImage(
                   'https://images.unsplash.com/photo-1485290334039-a3c69043e517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyOTU3NDE0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'),
             ),
-            accountEmail: Text('jane.doe@example.com'),
+            accountEmail: Text(email),
             accountName: Text(
-              'Jane Doe',
+              username,
               style: TextStyle(fontSize: 24.0),
             ),
             decoration: BoxDecoration(
@@ -128,7 +132,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Image.asset(
-              'assets/dog-64x64-1131172.png',
+              'assets/d3.png',
               height: 40.0,
               width: 35.0,
               alignment: Alignment.topLeft,
@@ -139,7 +143,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => addPet()));
+                  .push(MaterialPageRoute(builder: (context) => AdoptPet()));
             },
           ),
           SizedBox(

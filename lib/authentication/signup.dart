@@ -22,6 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _password = TextEditingController();
 
   final _conpassword = TextEditingController();
+  final _username = TextEditingController();
 
   String error = '';
 
@@ -72,6 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           margin: EdgeInsets.all(10.0),
                           width: _size.width - 150,
                           child: TextFormField(
+                            controller: _username,
                             validator: (value) =>
                                 value!.isEmpty ? 'Enter valid Input' : null,
                             cursorWidth: 2.0,
@@ -246,6 +248,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   await _auth.registerWithEmailAndPassword(
                                 _email.text,
                                 _password.text,
+                                _username.text,
                               );
                               if (result == null) {
                                 error = 'Enter Invalid Email';

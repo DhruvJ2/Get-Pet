@@ -1,15 +1,95 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pet_adopter/PetList.dart';
 import 'package:pet_adopter/UI/category.dart';
 import 'package:pet_adopter/models/listmodel.dart';
 import 'package:pet_adopter/pet.dart';
 
 class HomePageBody extends StatelessWidget {
   HomePageBody({Key? key}) : super(key: key);
+  PetListModel pet = new PetListModel();
+  void checkInput(String text, BuildContext context) {
+    switch (text.toLowerCase()) {
+      case 'dog':
+      case 'dogs':
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => PetList(category: 'Dog')));
+        break;
+      case 'cat':
+      case 'cats':
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => PetList(category: 'Cat')));
+        break;
+      case 'bird':
+      case 'birds':
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => PetList(category: 'Bird')));
+        break;
+      case 'hamster':
+      case 'hamsers':
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PetList(category: 'Hamster')));
+        break;
+      default:
+        break;
+    }
+    for (int i = 0; i < pet.dog['name']!.length; i++) {
+      if (text == pet.dog['name']![i]) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PetPage(
+                  breed: pet.dog['breed']![i],
+                  image: pet.dog['image']![i],
+                  category: pet.dog['category']![0],
+                  name: pet.dog['name']![i],
+                )));
+        break;
+      }
+    }
+    for (int i = 0; i < pet.cat['name']!.length; i++) {
+      if (text == pet.cat['name']![i]) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PetPage(
+                  breed: pet.cat['breed']![i],
+                  image: pet.cat['image']![i],
+                  category: pet.cat['category']![0],
+                  name: pet.cat['name']![i],
+                )));
+        break;
+      }
+    }
+    for (int i = 0; i < pet.bird['name']!.length; i++) {
+      if (text == pet.bird['name']![i]) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PetPage(
+                  breed: pet.bird['breed']![i],
+                  image: pet.bird['image']![i],
+                  category: pet.bird['category']![0],
+                  name: pet.bird['name']![i],
+                )));
+        break;
+      }
+    }
+    for (int i = 0; i < pet.hamster['name']!.length; i++) {
+      if (text == pet.hamster['name']![i]) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PetPage(
+                  breed: pet.hamster['breed']![i],
+                  image: pet.hamster['image']![i],
+                  category: pet.hamster['category']![0],
+                  name: pet.hamster['name']![i],
+                )));
+        break;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    PetListModel pet = new PetListModel();
 
+    final _search = TextEditingController();
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
@@ -26,24 +106,30 @@ class HomePageBody extends StatelessWidget {
                         bottomRight: Radius.circular(20.0)),
                   ),
                 ),
-                Positioned(
-                  child: Container(
-                    margin: EdgeInsets.all(20.0),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: TextField(
-                      autocorrect: false,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        icon: Icon(Icons.search),
-                        hintText: 'Search',
-                        hintStyle: TextStyle(color: Colors.white),
-                      ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 30.0,
+                  ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20.0)),
+                  child: TextField(
+                    onSubmitted: (text) => {
+                      checkInput(_search.text, context),
+                      _search.clear(),
+                    },
+                    controller: _search,
+                    autocorrect: false,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      icon: Icon(Icons.search),
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
@@ -68,15 +154,14 @@ class HomePageBody extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Category('Dogs', Colors.brown.shade200, 'assets/dogicon.png'),
-                  Category('Cats', Colors.grey.shade200, 'assets/caticon.png'),
+                  Category('Dog', Colors.brown.shade200, 'assets/dogicon.png'),
+                  Category('Cat', Colors.grey.shade200, 'assets/caticon.png'),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  Category(
-                      'Birds', Colors.pink.shade200, 'assets/birdicon.png'),
-                  Category('Hamsters', Colors.orange.shade800,
+                  Category('Bird', Colors.pink.shade200, 'assets/birdicon.png'),
+                  Category('Hamster', Colors.orange.shade800,
                       'assets/hamstericon.png'),
                 ],
               ),
@@ -97,6 +182,7 @@ class HomePageBody extends StatelessWidget {
                                   image: pet.displaypet['image']![index],
                                   name: pet.displaypet['name']![index],
                                   breed: pet.displaypet['breed']![index],
+                                  category: pet.displaypet['category']![0],
                                 )));
                       },
                       child: Card(
@@ -136,8 +222,8 @@ class HomePageBody extends StatelessWidget {
                                     pet.displaypet['name']![index],
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 26.0,
-                                      fontWeight: FontWeight.w300,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w400,
                                       letterSpacing: 3.0,
                                     ),
                                   ),
@@ -150,6 +236,7 @@ class HomePageBody extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w300,
+                                      letterSpacing: 2.0,
                                     ),
                                   ),
                                   SizedBox(
@@ -174,17 +261,18 @@ class HomePageBody extends StatelessWidget {
                 }),
           ),
           Container(
-            padding: EdgeInsets.all(7.0),
+            padding: EdgeInsets.only(left: 7.0),
             margin: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.cyan.shade900,
-                  width: 1.0,
+                  width: 2.0,
                 ),
                 borderRadius: BorderRadius.circular(10.0)),
             width: size.width,
             height: 90.0,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -195,10 +283,88 @@ class HomePageBody extends StatelessWidget {
                     Text('Contact'),
                   ],
                 ),
+                Container(
+                  width: 100.0,
+                  height: 90.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.horizontal(
+                      right: Radius.circular(10.0),
+                    ),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => OpenMap()));
+                    },
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.horizontal(right: Radius.circular(10.0)),
+                      child: Image.asset(
+                        'assets/map.png',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class OpenMap extends StatefulWidget {
+  const OpenMap({Key? key}) : super(key: key);
+
+  @override
+  _OpenMapState createState() => _OpenMapState();
+}
+
+class _OpenMapState extends State<OpenMap> {
+  late GoogleMapController _map;
+
+  final CameraPosition _initPosition =
+      CameraPosition(target: LatLng(18.9917984, 72.8404874));
+
+  late final List<Marker> marker = [];
+
+  int id = 1;
+
+  addmarker(cordinate) {
+    setState(() {
+      marker
+          .add(Marker(markerId: MarkerId(id.toString()), position: cordinate));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(
+          Icons.arrow_back_ios_new,
+          color: Colors.black54,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      body: GoogleMap(
+        initialCameraPosition: _initPosition,
+        markers: marker.toSet(),
+        mapType: MapType.normal,
+        onMapCreated: (controller) {
+          setState(() {
+            _map = controller;
+          });
+        },
+        onTap: (cordinate) {
+          _map.animateCamera(CameraUpdate.newLatLng(cordinate));
+          addmarker(cordinate);
+        },
       ),
     );
   }

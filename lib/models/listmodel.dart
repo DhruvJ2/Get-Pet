@@ -1,42 +1,123 @@
 import 'dart:math';
 
+import 'package:pet_adopter/UI/category.dart';
+
 class PetListModel {
+  Map<String, List<String>> adoptedpets = {
+    'name': [],
+    'breed': [],
+    'category': [],
+    'image': [],
+  };
   Map<String, List<String>> dog = {
-    'name': ['Tommy', 'Sam', 'lol', 'Josh'],
+    'category': ['Dog'],
+    'name': [
+      'Max',
+      'Sam',
+      'Duke',
+      'Rocky',
+      'Bear and Ajax',
+      'Milo',
+    ],
     'image': [
-      'assets/dog2.jpg',
-      'assets/dog.jpg',
-      'assets/Dog 1.jpg',
-      'assets/dog3.jpg'
+      'assets/Dogs/d.jpeg',
+      'assets/Dogs/d1.jpeg',
+      'assets/Dogs/d2.jpg',
+      'assets/Dogs/d4.jpg',
+      'assets/Dogs/d5.jpg',
+      'assets/Dogs/d6.jpg',
     ],
     'breed': [
+      'Beagle',
+      'Finnish Spitz',
+      'Poodle',
+      'Golden Retriver',
       'german shepherd',
       'Golden Retriver',
-      'Poodle',
-      'Golden Retriver'
     ],
   };
   var cat = {
-    'name': ['killer', 'cat2'],
-    'image': ['assets/cat.jpg', 'assets/cat3.jpg'],
-    'breed': ['Munchkin Cat', 'Munchkin Cat'],
-  };
-  var bird = {
-    'name': ['bird1'],
-    'image': ['assets/bird.jpg'],
-    'breed': ['Kingfisher'],
-  };
-  var hamster = {
-    'name': ['hamster1', 'hamster2', 'hamster3'],
+    'category': ['Cat'],
+    'name': [
+      'Luna',
+      'Lucy',
+      'Leo',
+      'Stella',
+      'Micky',
+      'Fitz',
+    ],
     'image': [
-      'assets/hamster1.jpg',
-      'assets/hamster2.jpg',
-      'assets/hamsters.jpg'
+      'assets/Cats/c.jpeg',
+      'assets/Cats/c1.jpeg',
+      'assets/Cats/c2.jpeg',
+      'assets/Cats/c3.jpeg',
+      'assets/Cats/c4.jpg',
+      'assets/Cats/c5.jpg'
     ],
     'breed': [
-      'Syriam (Golden) Hamster',
+      'American Bobtail',
+      'Korat',
+      'Abyssinian',
+      'Sphynx',
+      'Munchkin Cat',
+      'Munchkin Cat',
+    ],
+  };
+  var bird = {
+    'category': ['Bird'],
+    'name': [
+      'Sunny and Ava',
+      'Coco',
+      'Kiwi',
+      'Daisy',
+      'Pepper',
+      'Tori',
+    ],
+    'image': [
+      'assets/Birds/b.jpeg',
+      'assets/Birds/b1.jpeg',
+      'assets/Birds/b2.jpeg',
+      'assets/Birds/b3.jpeg',
+      'assets/Birds/b4.jpeg',
+      'assets/Birds/b5.jpg',
+    ],
+    'breed': [
+      'Parakeets',
+      'Cockatoo',
+      'Parrot',
+      'Amazon Parrot',
+      'Lesser Sulphur-crested Cockatoo',
+      'Kingfisher',
+    ],
+  };
+  var hamster = {
+    'category': ['Hamster'],
+    'name': [
+      'Gizmo',
+      'Duncan',
+      'Hamlet',
+      'Patches',
+      'Whiskers',
+      'Chomper',
+      'Spaz',
+    ],
+    'image': [
+      'assets/Hamsters/h.jpeg',
+      'assets/Hamsters/h1.jpeg',
+      'assets/Hamsters/h2.jpeg',
+      'assets/Hamsters/h3.jpeg',
+      'assets/Hamsters/h4.jpg',
+      'assets/Hamsters/h5.jpg',
+      'assets/Hamsters/h6.jpg',
+    ],
+    'breed': [
+      'Syrian',
+      'Syrian',
+      'Syrian',
+      'Dwarf Roborovski',
+      'Syrian (Golden) Hamster',
       'Dwarf Campbell Russian Hamster',
-      'Syriam Hamster'
+      'Syrian Hamster',
     ],
   };
 
@@ -44,6 +125,7 @@ class PetListModel {
   var random = Random();
   late int index;
   Map<String, List<String>> displaypet = {
+    'category': [],
     'name': [],
     'image': [],
     'breed': [],
@@ -62,21 +144,25 @@ class PetListModel {
         displaypet['name']!.add(dog['name']![index]);
         displaypet['image']!.add(dog['image']![index]);
         displaypet['breed']!.add(dog['breed']![index]);
+        displaypet['category']!.add(dog['category']![0]);
         break;
       case 'Cats':
         displaypet['name']!.add(cat['name']![index]);
         displaypet['image']!.add(cat['image']![index]);
         displaypet['breed']!.add(cat['breed']![index]);
+        displaypet['category']!.add(cat['category']![0]);
         break;
       case 'Birds':
         displaypet['name']!.add(bird['name']![index]);
         displaypet['image']!.add(bird['image']![index]);
         displaypet['breed']!.add(bird['breed']![index]);
+        displaypet['category']!.add(bird['category']![0]);
         break;
       case 'Hamsters':
         displaypet['name']!.add(hamster['name']![index]);
         displaypet['image']!.add(hamster['image']![index]);
         displaypet['breed']!.add(hamster['breed']![index]);
+        displaypet['category']!.add(hamster['category']![0]);
         break;
     }
   }

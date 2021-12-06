@@ -14,23 +14,25 @@ class CoverPage extends StatelessWidget {
         child: Container(
           child: Column(
             children: <Widget>[
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  'Get Pet',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 40.0,
-                      letterSpacing: 5.0,
-                      wordSpacing: 5.0,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
+              Center(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Get Pet',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 45.0,
+                        letterSpacing: 5.0,
+                        wordSpacing: 5.0,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  height: 300.0,
+                  width: _size.width,
                 ),
-                height: 100.0,
-                width: _size.width,
               ),
               Container(
-                height: _size.height - 300.0,
+                height: _size.height - 500.0,
                 width: _size.width,
                 child: Image.asset(
                   'assets/Cover.png',
